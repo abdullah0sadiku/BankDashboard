@@ -1,0 +1,22 @@
+services:
+  demo-dashboard:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: scraper-demo-dashboard
+    ports:
+      - "3002:3000"  # Map host port 3002 to container port 3000
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/app
+      - /app/node_modules  # Anonymous volume for node_modules
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    networks:
+      - demo-network
+
+networks:
+  demo-network:
+    driver: bridge 
