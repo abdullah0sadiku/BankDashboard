@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Login';
 import Homepage1 from './Homepage1';
+import Homepage2 from './Homepage2';
 
 interface User {
   name: string;
@@ -32,6 +33,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/homepage1" element={<Homepage1 user={user} onLogout={handleLogout} />} />
+          <Route path="/homepage2" element={<Homepage2 user={user} onLogout={handleLogout} />} />
           <Route path="/" element={<Navigate to="/homepage1" replace />} />
         </Routes>
       </div>

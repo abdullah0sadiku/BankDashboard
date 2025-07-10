@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface User {
   name: string;
@@ -84,7 +84,7 @@ const Homepage1: React.FC<Homepage1Props> = ({ user, onLogout }) => {
   };
 
   const getTransactions = () => {
-    const baseTransactions = [
+    const baseTransactions: any[] = [
       { 
         id: 1, 
         name: 'Amazon Purchase', 
@@ -114,7 +114,8 @@ const Homepage1: React.FC<Homepage1Props> = ({ user, onLogout }) => {
         shipping: '$0.00',
         totalBeforeTax: '$227.00',
         securityLevel: 'High - 3D Secure Verified',
-        fraudScore: '2/100 - Very Low Risk'
+        fraudScore: '2/100 - Very Low Risk',
+        cabinClass: 'Economy'
       },
       { 
         id: 2, 
