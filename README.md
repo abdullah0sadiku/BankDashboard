@@ -1,19 +1,22 @@
 # Demo Dashboard for Scraper Testing
 
-A React-based finance dashboard that simulates a user interface for testing web scrapers. The dashboard matches the provided Mastercard-style UI design.
+A React-based finance dashboard that provides two distinct layouts for testing web scrapers. The dashboard includes two versions with different visual designs and DOM structures while maintaining data consistency.
 
 ## Project Structure
 
 ```
 demo-dashboard/
 ├── public/
-│   ├── assets/        # Optional images/icons
+│   ├── assets/        # Images and icons
 │   └── index.html     # Main HTML file
 ├── src/
-│   ├── Homepage1.tsx  # Version 1 of the dashboard
+│   ├── Homepage1.tsx  # Version 1 of the dashboard (Light theme)
+│   ├── Homepage2.tsx  # Version 2 of the dashboard (Dark theme)
+│   ├── Login.tsx      # Login component
 │   ├── App.tsx        # Main app with routing
 │   ├── index.tsx      # React entry point
 │   └── index.css      # TailwindCSS imports
+├── docker-compose.yml # Docker Compose configuration
 ├── Dockerfile         # Docker configuration
 ├── package.json       # Dependencies and scripts
 ├── tailwind.config.js # TailwindCSS configuration
@@ -23,74 +26,74 @@ demo-dashboard/
 ## Features
 
 ### Homepage1 (/homepage1)
+- Light theme with purple/blue color scheme
+- Traditional layout structure
 - **Sidebar**: Left navigation with menu icons
-- **Credit Card Display**: Shows JOSEPH ALEX's Mastercard (2567 5647 8700 XXXX, valid 06/2020)
-- **Recent Transactions**: 
-  - Shopping: $410.00 (Oct 17)
-  - Payment received: $260.00 (Oct 17)
-- **Balance Panel**: 
-  - Current balance: $2370.50
-  - Income: $3650.50
-  - Expenses: $1280.00
-  - Last payment: $320.00 (17 Oct 2019)
+- **Credit Card Display**: Shows user's Mastercard details
+- **Recent Transactions**: Detailed transaction list with modal view
+- **Balance Panel**: Current balance, income, expenses tracking
 - **Statistics Chart**: SVG-based line chart showing income/expense trends
 - **Transaction Filters**: ALL / INCOME / EXPENSES buttons
 
+### Homepage2 (/homepage2)
+- Dark theme with teal/cyan color scheme
+- CSS Grid-based layout (col-span-12)
+- Contains identical data to Homepage1
+- Alternative DOM structure for scraper testing
+- Rich transaction detail modal
+- Different visual presentation while maintaining data parity
+
 ## Key Data Points for Scraping
 
-The dashboard includes specific IDs for easy scraper targeting:
+Both dashboard versions include consistent data points for scraper testing:
 
-- `#card-number`: Card number (2567 5647 8700 XXXX)
-- `#current-balance`: Current balance ($2370.50)
-- `#total-income`: Total income ($3650.50)
-- `#total-expenses`: Total expenses ($1280.00)
-- `#last-payment-amount`: Last payment amount ($320.00)
-- `#last-payment-date`: Last payment date (17 Oct 2019)
-- `#transaction-1-name`, `#transaction-1-amount`, `#transaction-1-date`: First transaction details
-- `#transaction-2-name`, `#transaction-2-amount`, `#transaction-2-date`: Second transaction details
+- Card details
+- Current balance
+- Income/expense totals
+- Transaction history
+- User profile information
+- Quick actions
 
 ## Installation & Running
 
-### Local Development
+All dependencies are included in the package.json. To start the application:
+
 ```bash
-npm install
-npm start
+# Start all services in detached mode
+docker compose up --build -d
 ```
 
-### Using Docker
-```bash
-docker build -t demo-dashboard .
-docker run -p 3000:3000 demo-dashboard
-```
+The application will be available at http://localhost:3000
 
 ## Routes
 
 - `/` - Redirects to `/homepage1`
-- `/homepage1` - Finance dashboard (Version 1)
-- `/homepage2` - Coming soon (Version 2 with modified DOM structure)
-- `/homepage3` - Coming soon (Version 3 with different class names)
+- `/homepage1` - Finance dashboard (Version 1 - Light Theme)
+- `/homepage2` - Finance dashboard (Version 2 - Dark Theme)
+- `/login` - Login page
 
 ## Technologies
 
 - **React 18** with TypeScript
 - **TailwindCSS** for styling
 - **React Router** for navigation
-- **Neumorphism** design elements
+- **Docker** for containerization
 - **SVG** for charts and graphics
 
 ## Styling
 
+### Homepage1
+- Light theme
+- Purple/blue color scheme
+- Traditional dashboard layout
 - Soft gradients and rounded corners
-- Neumorphism shadow effects
-- Modern clean dashboard aesthetic
-- Responsive grid layout
-- Purple/gray color scheme matching the original design
+- Responsive design
 
-## Next Steps
+### Homepage2
+- Dark theme (bg-gray-900)
+- Teal/cyan color scheme
+- CSS Grid-based layout
+- Modern card components
+- Alternative visual hierarchy
 
-1. Create Homepage2.tsx with modified DOM structure (different class names, nesting)
-2. Create Homepage3.tsx with additional structural changes
-3. Test scraper compatibility across all three versions
-4. Add interactive elements if needed for testing
-
-This dashboard provides a controlled environment for testing web scrapers against different DOM structures while maintaining visual consistency. 
+This dashboard provides a controlled environment for testing web scrapers against different DOM structures and visual presentations while maintaining consistent data across versions. Each version offers unique challenges for scraping tools while preserving functional equivalence. 
