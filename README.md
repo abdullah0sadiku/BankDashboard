@@ -2,6 +2,10 @@
 
 A React-based finance dashboard that provides two distinct layouts for testing web scrapers. The dashboard includes two versions with different visual designs and DOM structures while maintaining data consistency.
 
+## Live Demo
+
+🌐 **Live Application**: [https://dulla.github.io/BankDashboard](https://dulla.github.io/BankDashboard)
+
 ## Project Structure
 
 ```
@@ -59,11 +63,40 @@ Both dashboard versions include consistent data points for scraper testing:
 All dependencies are included in the package.json. To start the application:
 
 ```bash
-# Start all services in detached mode
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Or using Docker
 docker compose up --build -d
 ```
 
 The application will be available at http://localhost:3000
+
+## Deployment
+
+This project is configured for automatic deployment to GitHub Pages. The deployment happens automatically when you push to the main branch.
+
+### Manual Deployment
+
+If you want to deploy manually:
+
+```bash
+# Install dependencies
+npm install
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+### GitHub Pages Setup
+
+1. Go to your repository settings on GitHub
+2. Navigate to "Pages" in the sidebar
+3. Set source to "GitHub Actions"
+4. The workflow will automatically deploy on push to main branch
 
 ## Routes
 
