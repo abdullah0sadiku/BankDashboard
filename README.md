@@ -4,7 +4,7 @@ A React-based finance dashboard that provides two distinct layouts for testing w
 
 ## Live Demo
 
-🌐 **Live Application**: [https://dulla.github.io/BankDashboard](https://dulla.github.io/BankDashboard)
+🌐 **Live Application**: [https://abdullah0sadiku.github.io/BankDashboard]
 
 ## Project Structure
 
