@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/BankDashboard/static/css/main.a1b5870d.css",
-    "main.js": "/BankDashboard/static/js/main.159bda99.js",
+    "main.css": "/BankDashboard/static/css/main.7e51f21e.css",
+    "main.js": "/BankDashboard/static/js/main.b6684ef6.js",
     "index.html": "/BankDashboard/index.html",
-    "main.a1b5870d.css.map": "/BankDashboard/static/css/main.a1b5870d.css.map",
-    "main.159bda99.js.map": "/BankDashboard/static/js/main.159bda99.js.map"
+    "main.7e51f21e.css.map": "/BankDashboard/static/css/main.7e51f21e.css.map",
+    "main.b6684ef6.js.map": "/BankDashboard/static/js/main.b6684ef6.js.map"
   },
   "entrypoints": [
-    "static/css/main.a1b5870d.css",
-    "static/js/main.159bda99.js"
+    "static/css/main.7e51f21e.css",
+    "static/js/main.b6684ef6.js"
   ]
 }
