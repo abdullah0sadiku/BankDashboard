@@ -302,7 +302,12 @@ const Homepage2: React.FC<Homepage2Props> = ({ user, onLogout }) => {
 
   const cards = getUserData();
   const transactions = getTransactions();
-  const filteredTransactions = transactions.filter((t: Transaction) => activeFilter === 'ALL' || t.category === activeFilter);
+  const filteredTransactions = transactions.filter((t: Transaction) => {
+    if (activeFilter === 'ALL') return true;
+    if (activeFilter === 'INCOME') return t.amount > 0;
+    if (activeFilter === 'EXPENSES') return t.amount < 0;
+    return t.category === activeFilter;
+  });
 
   const handleTransactionClick = (transaction: any) => {
     setSelectedTransaction(transaction);
@@ -349,6 +354,24 @@ const Homepage2: React.FC<Homepage2Props> = ({ user, onLogout }) => {
             </section>
             <article className="row-span-2 bg-gray-800 p-6 rounded-lg">
                 <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
+                
+                {/* Filter Buttons */}
+                <div className="flex space-x-4 mb-4">
+                  {['ALL', 'INCOME', 'EXPENSES'].map(filter => (
+                    <button 
+                      key={filter}
+                      onClick={() => setActiveFilter(filter)}
+                      className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                        activeFilter === filter 
+                          ? 'bg-teal-600 text-white' 
+                          : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                      }`}
+                    >
+                      {filter}
+                    </button>
+                  ))}
+                </div>
+                
                 <ul className="space-y-3">
                     {filteredTransactions.map((t: Transaction) => (
                         <li key={t.id} onClick={() => handleTransactionClick(t)} className="grid grid-cols-3 items-center p-3 hover:bg-gray-700 rounded-md cursor-pointer">

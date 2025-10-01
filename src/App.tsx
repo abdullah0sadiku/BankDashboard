@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Login';
 import Homepage1 from './Homepage1';
 import Homepage2 from './Homepage2';
+import Bank from './Bank';
 
 interface User {
   name: string;
@@ -24,17 +25,42 @@ function App() {
     setUser(null);
   };
 
-  if (!user) {
-    return <Login onLogin={handleLogin} />;
-  }
+  // Protected route wrapper component
+  const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+    if (!user) {
+      return <Login onLogin={handleLogin} />;
+    }
+    return <>{children}</>;
+  };
 
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/homepage1" element={<Homepage1 user={user} onLogout={handleLogout} />} />
-          <Route path="/homepage2" element={<Homepage2 user={user} onLogout={handleLogout} />} />
-          <Route path="/" element={<Navigate to="/homepage1" replace />} />
+          {/* Public Route - No Authentication Required */}
+          <Route path="/bank" element={<Bank />} />
+          
+          {/* Protected Routes - Authentication Required */}
+          <Route 
+            path="/homepage1" 
+            element={
+              <ProtectedRoute>
+                <Homepage1 user={user!} onLogout={handleLogout} />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/v2/homepage1" 
+            element={
+              <ProtectedRoute>
+                <Homepage2 user={user!} onLogout={handleLogout} />
+              </ProtectedRoute>
+            } 
+          />
+          
+          {/* Default Routes */}
+          <Route path="/" element={<Navigate to="/bank" replace />} />
+          <Route path="/testing" element={<Navigate to="/bank" replace />} />
         </Routes>
       </div>
     </Router>
